@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { supabase } from "@/utils/supabase/client.js"
 import { useUser } from "@clerk/nextjs";
 import { toast } from "sonner";
+import { Loader } from "lucide-react";
 
 function AddNewListing() {
   const [selectedAddress, setSelectedAddress] = useState();
@@ -47,6 +48,7 @@ function AddNewListing() {
             disabled={!selectedAddress || !coordinates}
             onClick={nextHandler}
           >
+            {loader ? <Loader className="animate-spin"/>: 'Next'}
             Next
           </Button>
         </div>
