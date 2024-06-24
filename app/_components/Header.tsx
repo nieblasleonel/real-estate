@@ -20,7 +20,7 @@ export const Header = () => {
           <Link href={'/'}>
             <li className={`'hover:text-primary 
             font-medium text-sm cursor-pointer'
-            ${path=='/' && 'text-primary'}`}>For Sale</li></Link>
+            ${path=='/' && 'text-primary'}`}>For Sell</li></Link>
           <Link href={'/for-rent'}><li className={`'hover:text-primary 
             font-medium text-sm cursor-pointer'
             ${path=='/for-rent' && 'text-primary'}`}>For Rent</li></Link>
