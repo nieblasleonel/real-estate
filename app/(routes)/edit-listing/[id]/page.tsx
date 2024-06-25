@@ -72,7 +72,6 @@ function EditListing({ params }: any) {
     if (data) {
       toast("Listing updated");
       setLoading(false);
-      //router.replace('/');
     }
     for (const image of images) {
       setLoading(true);
@@ -103,9 +102,10 @@ function EditListing({ params }: any) {
       }
       setLoading(false);
     }
+    publishBtnHandler();
   };
 
-  const publishBtnHandler = async () => {
+  const publishBtnHandler = async () => {    
     const { data, error } = await supabase
       .from("listing")
       .update({ active: true })
@@ -113,7 +113,8 @@ function EditListing({ params }: any) {
       .select();
       if(data){
         setLoading(false);
-        toast('Listing published!')
+        toast('Listing published!');
+        router.replace("/");
       }
   };
 
@@ -126,7 +127,7 @@ function EditListing({ params }: any) {
         initialValues={{
           type: "",
           propertyType: "",
-          profileimage: user?.imageUrl,
+          profileImage: user?.imageUrl,
           fullName: user?.fullName,
         }}
         onSubmit={(values) => {
@@ -149,7 +150,7 @@ function EditListing({ params }: any) {
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="Sell" id="Sell" />
-                      <Label htmlFor="Sell">Sale</Label>
+                      <Label htmlFor="Sell">Sell</Label>
                     </div>
                   </RadioGroup>
                 </div>
@@ -288,10 +289,10 @@ function EditListing({ params }: any) {
                   variant="outline"
                   className="text-primary border-primary"
                 >
-                  {loading ? <Loader className="animate-spin" /> : "Save"}
+                  {loading ? <Loader className="animate-spin" /> : "Save and Publish"}
                 </Button>
 
-                <AlertDialog>
+                {/**<AlertDialog>
                   <AlertDialogTrigger asChild>
                     <Button type="button" disabled={loading} className="">
                       {loading ? (
@@ -315,7 +316,7 @@ function EditListing({ params }: any) {
                       </AlertDialogAction>
                     </AlertDialogFooter>
                   </AlertDialogContent>
-                </AlertDialog>
+                </AlertDialog> */}
               </div>
             </div>
           </Form>

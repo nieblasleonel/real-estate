@@ -52,7 +52,7 @@ function AddNewListing() {
             onClick={nextHandler}
           >
             {loader ? <Loader className="animate-spin"/>: 'Next'}
-            Next
+            
           </Button>
         </div>
       </div>
