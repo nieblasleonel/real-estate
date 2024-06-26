@@ -2,9 +2,10 @@ import { Button } from '@/components/ui/button'
 import { Bath, BedDouble, MapPin, Ruler, Search } from 'lucide-react'
 import Image from 'next/image'
 import React, { useState } from 'react'
+import FilterSection from './FilterSection'
 import GoogleAddressSearch from './GoogleAddressSearch'
 
-const Listing = ({listing, handleSearchClick, searchedAddress}:any) => {
+const Listing = ({listing, handleSearchClick, searchedAddress,setBathCount, setBedCount, setParkingCount, setHomeType}:any) => {
 
     const [address, setAddress] = useState();
   return (
@@ -20,8 +21,14 @@ const Listing = ({listing, handleSearchClick, searchedAddress}:any) => {
         >
             <Search className='h-4 w-4'/> Search</Button>
         </div>
-        {address&&<div className='px-3'>
-            <h2 className='text-lg'>Found {listing.length} Result in <span className='text-primary font-bold'>{address?.label}</span></h2>
+        <FilterSection 
+          setBathCount={setBathCount}
+          setBedCount={setBedCount}
+          setParkingCount={setParkingCount}
+          setHomeType={setHomeType}
+        />
+        {address&&<div className='px-3 my-5'>
+            <h2 className='text-lg'>Found <span className='font-bold'>{listing.length}</span> Result in <span className='text-primary font-bold'>{address?.label}</span></h2>
         </div>}
         <div className='grid grid-cols-1 md:grid-cols-2 gap-10'>
             {listing.length > 0 ? listing.map((item,index)=>(
